@@ -34,7 +34,7 @@ const goToWebApp = () => {
 
       {/* Texte et boutons à gauche */}
       <div className="relative lg:w-2/3 text-center lg:text-left">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+        <h1 className="text-2xl md:text-5xl font-bold text-gray-900 leading-tight">
           {t("index.titleText1")} <br /> {t("index.titleText2")}
         </h1>
         <p className="text-gray-600 mt-4 mb-8">

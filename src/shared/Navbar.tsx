@@ -10,6 +10,7 @@ import {
   frenchFlag,
   menuBarLogo,
   payqinLogo,
+  ImagesFont
 } from "../constants/appConstants";
 
 const BasicLink = ({
@@ -108,6 +109,7 @@ const BasicLink = ({
     </>
   );
 };
+const {appstoreicon, playstoreicon} = ImagesFont;
 
 export const Navbar = ({ }) => {
   const [expandNav, setExpandNav] = useState(false);
@@ -157,10 +159,10 @@ export const Navbar = ({ }) => {
 
   const links = [
     { href: "/", name: t("navbar.home") },
-    { href: "/pricing", name: t("navbar.pricing") },
-    { href: "https://blog.payqin.com", name: "Blog" },
-    { href: "https://blog.payqin.com", name: t("navbar.testimonials") },
-    { href: "https://policies.payqin.com", name: t("navbar.terms_conditions") },
+    // { href: "/pricing", name: t("navbar.pricing") },
+    // { href: "https://blog.payqin.com", name: "Blog" },
+    // { href: "https://blog.payqin.com", name: t("navbar.testimonials") },
+    // { href: "https://policies.payqin.com", name: t("navbar.terms_conditions") },
     {
       name: currentLang,
       options: true,
@@ -191,15 +193,17 @@ export const Navbar = ({ }) => {
                   options={link.options}
                 />
               ))}
-              <li>
-                <motion.button
+              <li className="flex flex-row md:flex-row items-center justify-center gap-x-4 lg:justify-start md:space-y-0 md:space-x-4">
+                {/* <motion.button
                   initial={{ scale: 1 }}
                   whileHover={{ scale: 1.05 }}
                   className="flex text-white px-3 md:px-6 py-3 bg-payqinBlue text-center text-xs md:text-sm rounded-full"
                   onClick={goToWebApp}
                 >
                   {t("index.openAccount")}
-                </motion.button>
+                </motion.button> */}
+                 <a href="https://apps.apple.com/fr/app/payqin/id1397872810" target="_blank"><img src={appstoreicon} alt="App Store" className="h-16"/></a>
+                 <a href="https://play.google.com/store/search?q=payqin&c=apps" target="_blank"><img src={playstoreicon} alt="Google Play" className="h-8"/></a>
               </li>
             </ul>
             {/* Hamburger Menu */}

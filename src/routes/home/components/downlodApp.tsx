@@ -12,8 +12,8 @@ export const DownloadApp: React.FC<any> = ({}) => {
       <p className="text-lg md:text-xl w-full md:w-2/3 text-textNewApp mt-2">{t("index.getAppDescription")}</p>
     </div>
     <div className="flex space-x-4">
-    <a href="#"><img src={appstore} alt="Download on the App Store" className="w-40 md:w-48" /></a>
-    <a href="#"><img src={playstore} alt="Get it on Google Play" className="w-40 md:w-48" /></a>
+    <a href="https://apps.apple.com/fr/app/payqin/id1397872810"><img src={appstore} alt="Download on the App Store" className="w-40 md:w-48" /></a>
+    <a href="https://play.google.com/store/search?q=payqin&c=apps"><img src={playstore} alt="Get it on Google Play" className="w-40 md:w-48" /></a>
     </div>
   </div>
   );

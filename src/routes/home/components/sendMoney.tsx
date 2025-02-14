@@ -4,7 +4,7 @@ import { ImagesFont } from "../../../constants/appConstants";
 
 export const SendMoney: React.FC<any> = ({}) => {
      
-  const {sendmoney} = ImagesFont;
+  const {sendmoney, appstore, playstore} = ImagesFont;
   const lang = localStorage.getItem("language") || "fr";
 
   return (
@@ -14,8 +14,11 @@ export const SendMoney: React.FC<any> = ({}) => {
         {lang == "fr" && <h2 className="text-2xl w-full sm:w-full md:w-full font-semibold lg:w-10/12 xl:w-10/12 2xl:w-7/12 text-textNewApp mb-6">{t("index.sendMoneyTitle1")}  <span className="text-payqinBlueNew">{t("index.sendMoneyTitle2")}</span></h2>}
         {lang == "en" && <h2 className="text-2xl w-full sm:w-full md:w-full font-semibold lg:w-10/12 xl:w-10/12 2xl:w-7/12 text-textNewApp mb-6">{t("index.sendMoneyTitle1")}  <span className="text-payqinBlueNew">{t("index.sendMoneyTitle2")}</span> {t("index.sendMoneyTitle3")} </h2>}
         <p className="mb-4 text-md w-full md:w-7/12 text-textNewApp">{t("index.sendMoneyDescription")}</p>
-        <a href="#" className="inline-block bg-payqinBlueNew text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-600 mb-12">{t("index.sendMoney")}</a>
-
+        {/* <a href="#" className="inline-block bg-payqinBlueNew text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-600 mb-12">{t("index.sendMoney")}</a> */}
+        <div className="flex flex-row md:flex-row mb-6 items-center justify-center gap-x-4 lg:justify-start md:space-y-0 md:space-x-4">
+        <a href="https://apps.apple.com/fr/app/payqin/id1397872810" target="_blank"><img src={appstore} alt="App Store" className="h-12"/></a>
+        <a href="https://play.google.com/store/search?q=payqin&c=apps" target="_blank"><img src={playstore} alt="Google Play" className="h-12"/></a>
+        </div>
     </div>
     {/* Section image */}
 

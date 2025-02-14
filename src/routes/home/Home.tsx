@@ -16,7 +16,7 @@ function Home() {
           <Cover />
         </div>
         <div className="md:px-10">
-          <Possibilities />
+          {/* <Possibilities /> */}
           <NewApp />
           <SendMoney />
         </div>

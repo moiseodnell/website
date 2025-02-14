@@ -51,22 +51,22 @@ export const Footer: React.FC<any> = ({}) => {
             <h5 className="text-lg font-bold text-textNewApp mb-4">{t("footer.follow")}</h5>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm flex flex-row text-textNewApp">
+                <a href="https://www.instagram.com/payqin?igsh=MTFtMzEyMDZlcmV4eQ==" target="_blank" className="text-sm flex flex-row text-textNewApp">
                   Instagram &nbsp; <IoIosTrendingUp color="blue" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm flex flex-row text-textNewApp">
+                <a href="https://www.linkedin.com/company/payqin/posts/?feedView=all" target="_blank" className="text-sm flex flex-row text-textNewApp">
                   Linkedin &nbsp; &nbsp; <IoIosTrendingUp color="blue" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm flex flex-row text-textNewApp">
+                <a href="#" target="_blank" className="text-sm flex flex-row text-textNewApp">
                   WhatsApp &nbsp; &nbsp; <IoIosTrendingUp color="blue" />
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm flex flex-row text-textNewApp">
+                <a href="https://www.facebook.com/payqin" target="_blank" className="text-sm flex flex-row text-textNewApp">
                   Facebook &nbsp; &nbsp; <IoIosTrendingUp color="blue" />
                 </a>
               </li>
@@ -74,19 +74,19 @@ export const Footer: React.FC<any> = ({}) => {
           </div>
         </div>
         <div className="flex justify-center md:flex hidden mb-8 text-textNewApp text-sm">
-          <a href="#" target="_blank" className="mx-4">
+          <a href="https://policies.payqin.com" target="_blank" className="mx-4">
           {t("index.terms_conditions")}
           </a>
-          <a href="#" target="_blank" className="mx-4">
+          <a href="https://policies.payqin.com" target="_blank" className="mx-4">
           {t("footer.privacy")}
           </a>
-          <a href="#" target="_blank" className="mx-4">
-          {t("footer.cookies")}
+          <a href="https://blog.payqin.com" target="_blank" className="mx-4">
+          {t("Blog")}
           </a>
-          <a href="#" target="_blank" className="mx-4">
-          {t("footer.refunds")}
+          <a href="https://blog.payqin.com" target="_blank" className="mx-4">
+          {t("navbar.testimonials")}
           </a>
-          <a href="#" target="_blank" className="mx-4">
+          <a href="https://policies.payqin.com" target="_blank" className="mx-4">
           {t("footer.license")}
           </a>
         </div>

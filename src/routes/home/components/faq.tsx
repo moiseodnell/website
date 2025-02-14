@@ -56,8 +56,7 @@ export const Faq: React.FC<any> = ({}) => {
               className="w-16 mb-4"
             />
             <p className="text-gray-800 text-xs">
-              Payqin makes international transfers easy and affordable. I love
-              the transparency with no hidden fees!
+              {t("index.testimonial1")}
             </p>
             <div className="flex items-center mt-4">
               <img
@@ -87,43 +86,40 @@ export const Faq: React.FC<any> = ({}) => {
             <div className="bg-white p-2 border-2 rounded-md">
               <details className="cursor-pointer">
                 <summary className="font-semibold text-gray-800">
-                  How long does it take for a transfer to complete
+                {t("index.question1")}
                 </summary>
                 <p className="mt-2 text-gray-600">
-                  Transfers typically complete within 1-2 business days.
+                {t("index.answer4")}
                 </p>
               </details>
             </div>
             <div className="bg-white p-2 border-2 rounded-md">
               <details className="cursor-pointer">
                 <summary className="font-semibold text-gray-800">
-                  How do I transfer money with Payqin
+                {t("index.question2")}
                 </summary>
                 <p className="mt-2 text-gray-600">
-                  Simply log in to your account and follow the instructions on
-                  the transfer page.
+                {t("index.answer3")}
                 </p>
               </details>
             </div>
             <div className="bg-white p-2 border-2 rounded-md">
               <details className="cursor-pointer">
                 <summary className="font-semibold text-gray-800">
-                  Are there any hidden fees for transactions
+                {t("index.question3")}
                 </summary>
                 <p className="mt-2 text-gray-600">
-                  No, Payqin prides itself on transparency and there are no
-                  hidden fees.
+                {t("index.answer2")}
                 </p>
               </details>
             </div>
             <div className="bg-white p-2 border-2 rounded-md">
               <details className="cursor-pointer">
                 <summary className="font-semibold text-gray-800">
-                  Is my financial information secure with Payqin
+                {t("index.question4")}
                 </summary>
                 <p className="mt-2 text-gray-600">
-                  Yes, we use state-of-the-art encryption to ensure your
-                  information is secure.
+                {t("index.answer1")}
                 </p>
               </details>
             </div>

@@ -24,7 +24,13 @@ import formbleu from "../assets/formeblue.png"
 import formrose from "../assets/formerose.png"
 import profil from "../assets/profil.png"
 import cover from "../assets/Vector.png"
-
+import appstoreicon from "../assets/appstoreicon.png"
+import playstoreicon from "../assets/playstoreicon.png"
+import send from "../assets/send.png"
+import globe from "../assets/globe.gif"
+import map from "../assets/map-rotation.gif"
+import mobile_en from "../assets/mobile_en.gif"
+import newapp_screens from "../assets/newapp_screens.gif"
 export const frenchFlag =
   "https://storage.googleapis.com/payqin-ltd-gs-cld/images/upload/main%20website/countries/Flag_of_France__1794_1815__1830_1974_.svg_p56bxt.png";
 export const englandFlag =
@@ -216,5 +222,6 @@ export const menuBarLogo =
 export const ImagesFont = {
   woman, smImg1, smImg2, smImg3, smImg4, bankTansfer, topUp, qrCode,stellar, 
   moneygram, blockchain,visa, opportunities1, opportunities2, opportunities3, cover,
-  newapp, playstore, appstore, sendmoney, mobile, airbnb, star, profil, formbleu, formrose
+  newapp, playstore, appstore, sendmoney, mobile, airbnb, star, profil, formbleu, formrose,
+  playstoreicon, appstoreicon, send, globe, map, mobile_en, newapp_screens
 }

@@ -4,7 +4,7 @@ import { ImagesFont } from "../../../constants/appConstants";
 
 export const FlexAccount: React.FC<any> = ({}) => {
      
-  const {mobile_en} = ImagesFont;
+  const {flex_mobile} = ImagesFont;
 
   return (
     <div className="relative py-12 my-20 md:py-10 lg:py-0">
@@ -23,7 +23,7 @@ export const FlexAccount: React.FC<any> = ({}) => {
     </div> */}
 
     <div className="relative my-12 lg:mt-0">
-      <img src={mobile_en} alt="Phone" className="w-full" />
+      <img src={flex_mobile} alt="Phone" className="w-full" />
       <div className="absolute inset-0 flex items-center justify-center">
       </div>
     </div>

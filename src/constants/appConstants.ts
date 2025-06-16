@@ -6,6 +6,7 @@ import smImg1 from "../assets/man4.png";
 import bankTansfer from "../assets/bank-tansfer.png"
 import topUp from "../assets/top-up.png"
 import qrCode from "../assets/qrCode.png"
+import codeqr from "../assets/codeqr.jpg"
 import stellar from "../assets/stellar.png"
 import moneygram from "../assets/moneygram.png"
 import blockchain from "../assets/blockchain.png"
@@ -13,11 +14,12 @@ import visa from "../assets/visa.png"
 import opportunities1 from "../assets/individual.png"
 import opportunities2 from "../assets/transfer.png"
 import opportunities3 from "../assets/business.png"
-import newapp from "../assets/newapp.png"
+import newapp from "../assets/newapp.gif"
 import playstore from "../assets/playStore.png"
 import appstore from "../assets/appstore.png"
 import sendmoney from "../assets/sendmoney.png"
 import mobile from "../assets/mobile.png"
+import flex_mobile from "../assets/flex_mobile.gif"
 import airbnb from "../assets/airbnb.png"
 import star from "../assets/star.png"
 import formbleu from "../assets/formeblue.png"
@@ -31,6 +33,7 @@ import globe from "../assets/globe.gif"
 import map from "../assets/map-rotation.gif"
 import mobile_en from "../assets/mobile_en.gif"
 import newapp_screens from "../assets/newapp_screens.gif"
+import user from "../assets/user.png"
 export const frenchFlag =
   "https://storage.googleapis.com/payqin-ltd-gs-cld/images/upload/main%20website/countries/Flag_of_France__1794_1815__1830_1974_.svg_p56bxt.png";
 export const englandFlag =
@@ -223,5 +226,5 @@ export const ImagesFont = {
   woman, smImg1, smImg2, smImg3, smImg4, bankTansfer, topUp, qrCode,stellar, 
   moneygram, blockchain,visa, opportunities1, opportunities2, opportunities3, cover,
   newapp, playstore, appstore, sendmoney, mobile, airbnb, star, profil, formbleu, formrose,
-  playstoreicon, appstoreicon, send, globe, map, mobile_en, newapp_screens
+  playstoreicon, appstoreicon, send, globe, map, mobile_en, newapp_screens, user, flex_mobile, codeqr
 }

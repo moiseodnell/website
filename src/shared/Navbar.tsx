@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { t } from "i18next";
 import { useTranslation } from "react-i18next";
@@ -10,8 +10,10 @@ import {
   frenchFlag,
   menuBarLogo,
   payqinLogo,
-  ImagesFont
+  ImagesFont,
+  appleStoreLogo,
 } from "../constants/appConstants";
+import QRCode from "react-qr-code";
 
 const BasicLink = ({
   path,
@@ -26,7 +28,6 @@ const BasicLink = ({
 }) => {
   const { i18n } = useTranslation("common");
   let lang = "fr";
-
   const [expandNav, setExpandNav] = useState<boolean>(false);
 
   const handleChangelanguage = () => {
@@ -64,13 +65,27 @@ const BasicLink = ({
           <div
             className="flex gap-x-2 items-center justify-center cursor-pointer relative"
             onClick={() => setExpandNav(!expandNav)}
-            style={{padding:10, backgroundColor:"rgba(255,0,0,0.25)", borderRadius: 5}}
+            style={{
+              padding: 10,
+              backgroundColor: "rgba(255,0,0,0.25)",
+              borderRadius: 5,
+            }}
           >
             <CustomLang lang={name} />
             {expandNav ? (
-              <img src={expandUpImg} alt="expand_up" className="h-4 w-4" style={{borderRadius: 5}} />
+              <img
+                src={expandUpImg}
+                alt="expand_up"
+                className="h-4 w-4"
+                style={{ borderRadius: 5 }}
+              />
             ) : (
-              <img src={expandDownImg} alt="expand_down" className="h-4 w-4" style={{borderRadius: 5}} />
+              <img
+                src={expandDownImg}
+                alt="expand_down"
+                className="h-4 w-4"
+                style={{ borderRadius: 5 }}
+              />
             )}
           </div>
           {expandNav && (
@@ -84,7 +99,7 @@ const BasicLink = ({
                     src={englandFlag}
                     alt="country_flag"
                     className="h-6 w-7"
-                    style={{borderRadius: 50}}
+                    style={{ borderRadius: 50 }}
                   />{" "}
                   <span>{"EN"}</span>
                 </div>
@@ -97,7 +112,7 @@ const BasicLink = ({
                     src={frenchFlag}
                     alt="country_flag"
                     className="h-6 w-7"
-                    style={{borderRadius: 50}}
+                    style={{ borderRadius: 50 }}
                   />{" "}
                   <span>{"FR"}</span>
                 </div>
@@ -109,18 +124,18 @@ const BasicLink = ({
     </>
   );
 };
-const {appstoreicon, playstoreicon} = ImagesFont;
+
+const { appstoreicon, playstoreicon, codeqr } = ImagesFont;
 
 export const Navbar = ({ }) => {
   const [expandNav, setExpandNav] = useState(false);
+  const [showQr, setShowQr] = useState(false);
+  const qrRef = useRef<HTMLDivElement>(null);
   const [scope, animate] = useAnimate();
   const currentUrl = window.location.pathname;
-
   let lang = "fr";
-
   const { i18n } = useTranslation("common");
-
-  const currentLang = i18n.language.toUpperCase();
+  const currentLang = i18n.language.toUpperCase()
 
   const toggleMenu = () => {
     setExpandNav(!expandNav);
@@ -153,35 +168,54 @@ export const Navbar = ({ }) => {
     }
 
     i18n.changeLanguage(lang).then(() => window.location.reload());
-
     return null;
   };
 
+
   const links = [
     { href: "/", name: t("navbar.home") },
-    // { href: "/pricing", name: t("navbar.pricing") },
-    // { href: "https://blog.payqin.com", name: "Blog" },
-    // { href: "https://blog.payqin.com", name: t("navbar.testimonials") },
-    // { href: "https://policies.payqin.com", name: t("navbar.terms_conditions") },
     {
       name: currentLang,
       options: true,
     },
   ];
+    const toggleQrCode = () => {
+    setShowQr((prev) => !prev);
+  };
+  // ➤ Fermer le QR Code quand on clique en dehors
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (qrRef.current && !qrRef.current.contains(event.target as Node)) {
+        setShowQr(false);
+      }
+    };
+
+    if (showQr) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Nettoyage
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showQr]);
+
+  const [qrUrl, setQrUrl] = useState("https://apps.apple.com/fr/app/payqin/id1397872810"); // par défaut App Store
+
+  // URLs
+  const APP_STORE_URL = "https://apps.apple.com/fr/app/payqin/id1397872810";
+  const PLAY_STORE_URL = "https://play.google.com/store/search?q=payqin&c=apps";
 
   return (
     <>
-      <nav
-        className="w-full bg-white font-light sticky top-0 z-10 shadow-md lg:shadow-sm py-2"
-        ref={scope}
-      >
+      <nav className="w-full bg-white font-light sticky top-0 z-10 shadow-md lg:shadow-sm py-2" ref={scope}>
         <div className="container mx-auto p-2 lg:p-4 h-full">
           <div className="flex justify-between items-center h-full">
-            <>
-              <a href="/">
-                <img src={payqinLogo} alt="payqin_logo" className="max-h-6" />
-              </a>
-            </>
+            <a href="/">
+              <img src={payqinLogo} alt="payqin_logo" className="max-h-6" />
+            </a>
 
             <ul className="hidden lg:flex lg:gap-x-6 xl:gap-x-10 lg:items-center">
               {links.map((link, index) => (
@@ -193,93 +227,100 @@ export const Navbar = ({ }) => {
                   options={link.options}
                 />
               ))}
-              <li className="flex flex-row md:flex-row items-center justify-center gap-x-4 lg:justify-start md:space-y-0 md:space-x-4">
-                {/* <motion.button
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="flex text-white px-3 md:px-6 py-3 bg-payqinBlue text-center text-xs md:text-sm rounded-full"
+              <li className="flex flex-row items-center justify-center gap-x-4">
+                <button onClick={toggleQrCode}>
+                  <img src={codeqr} alt="QR Code" className="h-8" />
+                </button>
+                <a href="https://apps.apple.com/fr/app/payqin/id1397872810" target="_blank">
+                  <img src={appstoreicon} alt="App Store" className="h-16" />
+                </a>
+                <a href="https://play.google.com/store/search?q=payqin&c=apps" target="_blank">
+                  <img src={playstoreicon} alt="Google Play" className="h-8" />
+                </a>
+                {showQr && (
+                  <div
+                    ref={qrRef} // ➤ ref pour détecter les clics à l'extérieur
+                    className="absolute top-10 right-0 bg-white shadow-xl p-4 rounded-lg z-50 w-64"
+                  >
+                    <p className="font-semibold text-center mb-2">Téléchargez l'application</p>
+                    <div className="flex justify-center mb-3">
+                      <QRCode value={qrUrl} size={128} />
+                    </div>
+                    <div className="flex justify-around mt-2">
+                      <button
+                        onClick={() => setQrUrl(APP_STORE_URL)}
+                        className={`text-sm px-3 py-1 rounded border ${
+                          qrUrl === APP_STORE_URL ? "bg-blue-600 text-white" : "bg-white"
+                        }`}
+                      >
+                        App Store
+                      </button>
+                      <button
+                        onClick={() => setQrUrl(PLAY_STORE_URL)}
+                        className={`text-sm px-3 py-1 rounded border ${
+                          qrUrl === PLAY_STORE_URL ? "bg-green-600 text-white" : "bg-white"
+                        }`}
+                      >
+                        Play Store
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </li>
+            </ul>
+
+            <ul className="lg:hidden">
+              <li className="flex gap-x-2">
+                <button
+                  className="hidden md:flex text-white px-3 md:px-6 py-3 bg-payqinBlue text-center text-xs md:text-sm rounded-full"
                   onClick={goToWebApp}
                 >
                   {t("index.openAccount")}
-                </motion.button> */}
-                 <a href="https://apps.apple.com/fr/app/payqin/id1397872810" target="_blank"><img src={appstoreicon} alt="App Store" className="h-16"/></a>
-                 <a href="https://play.google.com/store/search?q=payqin&c=apps" target="_blank"><img src={playstoreicon} alt="Google Play" className="h-8"/></a>
+                </button>
+                <button type="button" onClick={toggleMenu}>
+                  <img src={menuBarLogo} alt="menu_button" className="max-h-8 md:max-h-10" />
+                </button>
               </li>
             </ul>
-            {/* Hamburger Menu */}
-            <>
-              <ul className="lg:hidden">
-                <li className="flex gap-x-2">
-                  <button
-                    className="hidden md:flex text-white px-3 md:px-6 py-3 bg-payqinBlue text-center text-xs md:text-sm rounded-full"
-                    onClick={goToWebApp}
-                  >
-                    {t("index.openAccount")}
-                  </button>
-
-                  <button type="button" onClick={toggleMenu}>
-                    <img
-                      src={menuBarLogo}
-                      alt="menu_button"
-                      className="max-h-8 md:max-h-10"
-                    />
-                  </button>
-                </li>
-              </ul>
-            </>
           </div>
-          <nav
-            className={`${expandNav ? "block" : "hidden"
-              } bg-payqinBlue bg-opacity-10 h-auto pt-4 w-full`}
-          >
+
+          <nav className={`${expandNav ? "block" : "hidden"} bg-payqinBlue bg-opacity-10 h-auto pt-4 w-full`}>
             <ul className="ul-nav flex flex-col">
               {links.map((link, index) => (
                 <div key={index} className="nav-item">
                   {link.options ? (
-                    <>
-                      <li>
-                        <a
-                          href={link.href}
-                          onClick={() => {
-                            if (link.options) {
-                              handleChangelanguage();
-                            }
-                          }}
-                          
-                        >
-                          {link.name === "FR" ? (
-                            <div className="flex gap-x-3 items-center cursor-pointer" style={{padding:10, backgroundColor:"rgba(255,0,0,0.25)"}}>
-                              <img
-                                src={englandFlag}
-                                alt="country_flag"
-                                className="h-6 w-10"
-                              />{" "}
-                              <span>{"EN"}</span>
-                            </div>
-                          ) : (
-                            <div className="flex gap-x-3 items-center cursor-pointer" style={{padding:10, backgroundColor:"rgba(255,0,0,0.25)"}}>
-                              <img
-                                src={frenchFlag}
-                                alt="country_flag"
-                                className="h-6 w-10"
-                              />{" "}
-                              <span>{"FR"}</span>
-                            </div>
-                          )}
-                        </a>
-                      </li>
-                    </>
+                    <li>
+                      <a
+                        href={link.href}
+                        onClick={() => {
+                          if (link.options) {
+                            handleChangelanguage();
+                          }
+                        }}
+                      >
+                        {link.name === "FR" ? (
+                          <div className="flex gap-x-3 items-center cursor-pointer" style={{ padding: 10, backgroundColor: "rgba(255,0,0,0.25)" }}>
+                            <img src={englandFlag} alt="country_flag" className="h-6 w-10" /> <span>{"EN"}</span>
+                          </div>
+                        ) : (
+                          <div className="flex gap-x-3 items-center cursor-pointer" style={{ padding: 10, backgroundColor: "rgba(255,0,0,0.25)" }}>
+                            <img src={frenchFlag} alt="country_flag" className="h-6 w-10" /> <span>{"FR"}</span>
+                          </div>
+                        )}
+                      </a>
+                    </li>
                   ) : (
                     <li className="py-1">
                       <a href={link.href}>{link.name}</a>
                     </li>
                   )}
-                  <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+                  <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700" />
                 </div>
               ))}
             </ul>
           </nav>
         </div>
+
       </nav>
     </>
   );

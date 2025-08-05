@@ -7,6 +7,7 @@ import { FlexAccount } from "./components/flexAccount";
 import { Faq } from "./components/faq";
 import { DownloadApp } from "./components/downlodApp";
 import { ImagesFont } from "../../constants/appConstants";
+import { Question } from "./components/question";
 function Home() {
   const {cover} = ImagesFont
   return (

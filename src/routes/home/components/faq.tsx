@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { t } from "i18next";
 import { ImagesFont } from "../../../constants/appConstants";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import FaqList from "../../../utils/FaqList"; // Assure-toi du bon chemin d'import
 
-export const Faq: React.FC<any> = ({}) => {
+export const Faq: React.FC<any> = () => {
   const { airbnb, star, profil, formbleu, formrose, user } = ImagesFont;
   const lang = localStorage.getItem("language") || "fr";
 
@@ -23,7 +24,60 @@ export const Faq: React.FC<any> = ({}) => {
       name: "Mvam Dorcas",
       title: "",
     },
-    
+  ];
+
+  const data = [
+    {
+      question: t("index.firstQ"),
+      sentence: t("index.firstQAnswer1"),
+      responses: [
+        t("index.firstQAnswer2"),
+        t("index.firstQAnswer3"),
+        t("index.firstQAnswer4"),
+      ],
+    },
+    {
+      question: t("index.secondQ"),
+      sentence: t("index.secondQAnswer1"),
+      responses: [
+        t("index.secondQAnswer2"),
+        t("index.secondQAnswer3"),
+        t("index.secondQAnswer4"),
+        t("index.secondQAnswer5"),
+      ],
+    },
+    {
+      question: t("index.thirdQ"),
+      sentence: t("index.thirdQAnswer1"),
+      responses: [
+        t("index.thirdQAnswer2"),
+        t("index.thirdQAnswer3"),
+        t("index.thirdQAnswer4"),
+        t("index.thirdQAnswer5"),
+        t("index.thirdQAnswer6"),
+        t("index.thirdQAnswer7"),
+      ],
+    },
+    {
+      question: t("index.fourthQ"),
+      sentence: t("index.fourthQAnswer1"),
+      responses: [
+        t("index.fourthQAnswer2"),
+        t("index.fourthQAnswer3"),
+        t("index.fourthQAnswer4"),
+        t("index.fourthQAnswer5"),
+      ],
+    },
+    {
+      question: t("index.fifthQ"),
+      sentence: t("index.fifthQAnswer1"),
+      responses: [
+        t("index.fifthQAnswer2"),
+        t("index.fifthQAnswer3"),
+        t("index.fifthQAnswer4"),
+        t("index.fifthQAnswer5"),
+      ],
+    },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -46,12 +100,11 @@ export const Faq: React.FC<any> = ({}) => {
   return (
     <div className="mx-auto my-4 md:my-14 p-10 md:p-20 bg-gradient-to-t from-faq to-white">
       <div className="text-center">
-        {lang == "fr" && (
+        {lang === "fr" ? (
           <h2 className="text-3xl font-bold text-textNewApp">
             <span className="text-blue-400">{t("index.faqTitle1")}</span> {t("index.faqTitle2")}
           </h2>
-        )}
-        {lang == "en" && (
+        ) : (
           <h2 className="text-3xl font-bold text-textNewApp">
             {t("index.faqTitle1")} <span className="text-blue-400">{t("index.faqTitle2")}</span>
           </h2>
@@ -80,7 +133,6 @@ export const Faq: React.FC<any> = ({}) => {
         <div className="relative p-6 w-full md:w-xl rounded-lg z-0">
           <img src={formrose} className="absolute -bottom-20 -left-8 w-80 transform -z-10" />
           <div className="relative bg-white shadow-lg p-4 sm:w-1/2 md:w-full xl:w-2/3 lg:w-full rounded-lg z-0">
-            {/* <img src={"""} alt="Airbnb" className="w-16 mb-4" /> */}
             <p className="text-gray-800 text-xs">{testimonials[currentIndex].text}</p>
             <div className="flex items-center mt-4">
               <img src={user} alt={testimonials[currentIndex].name} className="w-10 h-10 rounded-full" />
@@ -97,51 +149,8 @@ export const Faq: React.FC<any> = ({}) => {
           </div>
         </div>
 
-                {/* FAQ */}
-          <div className="max-w-md w-full z-0">
-          <div className="space-y-4 sm:mt-20">
-            <div className="bg-white p-2 border-2 rounded-md">
-              <details className="cursor-pointer">
-                <summary className="font-semibold text-gray-800">
-                {t("index.question1")}
-                </summary>
-                <p className="mt-2 text-gray-600">
-                {t("index.answer4")}
-                </p>
-              </details>
-            </div>
-            <div className="bg-white p-2 border-2 rounded-md">
-              <details className="cursor-pointer">
-                <summary className="font-semibold text-gray-800">
-                {t("index.question2")}
-                </summary>
-                <p className="mt-2 text-gray-600">
-                {t("index.answer3")}
-                </p>
-              </details>
-            </div>
-            <div className="bg-white p-2 border-2 rounded-md">
-              <details className="cursor-pointer">
-                <summary className="font-semibold text-gray-800">
-                {t("index.question3")}
-                </summary>
-                <p className="mt-2 text-gray-600">
-                {t("index.answer2")}
-                </p>
-              </details>
-            </div>
-            <div className="bg-white p-2 border-2 rounded-md">
-              <details className="cursor-pointer">
-                <summary className="font-semibold text-gray-800">
-                {t("index.question4")}
-                </summary>
-                <p className="mt-2 text-gray-600">
-                {t("index.answer1")}
-                </p>
-              </details>
-            </div>
-          </div>
-        </div>
+        {/* FAQ list component */}
+        <FaqList data={data} />
       </div>
     </div>
   );

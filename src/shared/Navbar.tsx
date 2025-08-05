@@ -173,7 +173,7 @@ export const Navbar = ({ }) => {
 
 
   const links = [
-    { href: "/", name: t("navbar.home") },
+    // { href: "/", name: t("navbar.home") },
     {
       name: currentLang,
       options: true,
@@ -218,7 +218,7 @@ export const Navbar = ({ }) => {
             </a>
 
             <ul className="hidden lg:flex lg:gap-x-6 xl:gap-x-10 lg:items-center">
-              {links.map((link, index) => (
+              {links.map((link : any, index) => (
                 <BasicLink
                   path={currentUrl}
                   key={index}
@@ -286,7 +286,7 @@ export const Navbar = ({ }) => {
 
           <nav className={`${expandNav ? "block" : "hidden"} bg-payqinBlue bg-opacity-10 h-auto pt-4 w-full`}>
             <ul className="ul-nav flex flex-col">
-              {links.map((link, index) => (
+              {links.map((link : any, index) => (
                 <div key={index} className="nav-item">
                   {link.options ? (
                     <li>
